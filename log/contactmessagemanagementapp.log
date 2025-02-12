@@ -1,23 +1,67 @@
-"2025-02-12 23:08:57,574 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Starting ContactMessageManagementApplication using Java 17.0.14 on yBug-PC with PID 10000 (C:\Users\yusBug\IdeaProjects\ContactMessageManagement\target\classes started by yusBug in C:\Users\yusBug\IdeaProjects\ContactMessageManagement)
-""2025-02-12 23:08:57,578 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:No active profile set, falling back to 1 default profile: "default"
-""2025-02-12 23:08:58,239 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-""2025-02-12 23:08:58,260 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 7 ms. Found 0 JPA repository interfaces.
-""2025-02-12 23:08:58,915 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8099 (http)
-""2025-02-12 23:08:58,925 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
-""2025-02-12 23:08:58,925 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
-""2025-02-12 23:08:59,028 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
-""2025-02-12 23:08:59,029 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 1405 ms
-""2025-02-12 23:08:59,205 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
-""2025-02-12 23:08:59,265 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
-""2025-02-12 23:08:59,444 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-""2025-02-12 23:08:59,552 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
-""2025-02-12 23:08:59,747 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
-""2025-02-12 23:08:59,776 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
-""2025-02-12 23:09:00,038 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-""2025-02-12 23:09:00,046 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
-""2025-02-12 23:09:00,538 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8099 (http) with context path ''
-""2025-02-12 23:09:00,554 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Started ContactMessageManagementApplication in 3.45 seconds (JVM running for 3.878)
-""2025-02-12 23:09:47,289 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
-""2025-02-12 23:09:47,291 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
-""2025-02-12 23:09:47,294 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+"2025-02-13 00:07:30,594 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Starting ContactMessageManagementApplication using Java 17.0.14 on yBug-PC with PID 12176 (C:\Users\yusBug\IdeaProjects\ContactMessageManagement\target\classes started by yusBug in C:\Users\yusBug\IdeaProjects\ContactMessageManagement)
+""2025-02-13 00:07:30,603 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:No active profile set, falling back to 1 default profile: "default"
+""2025-02-13 00:07:31,267 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2025-02-13 00:07:31,288 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+""2025-02-13 00:07:31,916 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8099 (http)
+""2025-02-13 00:07:31,926 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2025-02-13 00:07:31,927 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2025-02-13 00:07:32,027 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2025-02-13 00:07:32,028 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 1376 ms
+""2025-02-13 00:07:32,214 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2025-02-13 00:07:32,296 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2025-02-13 00:07:32,440 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2025-02-13 00:07:32,556 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2025-02-13 00:07:32,745 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2025-02-13 00:07:32,772 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2025-02-13 00:07:33,295 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2025-02-13 00:07:33,302 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2025-02-13 00:07:33,828 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8099 (http) with context path ''
+""2025-02-13 00:07:33,846 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Started ContactMessageManagementApplication in 3.675 seconds (JVM running for 4.042)
+""2025-02-13 00:07:37,336 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2025-02-13 00:07:37,337 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2025-02-13 00:07:37,340 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+""2025-02-13 00:07:45,867 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Starting ContactMessageManagementApplication using Java 17.0.14 on yBug-PC with PID 20324 (C:\Users\yusBug\IdeaProjects\ContactMessageManagement\target\classes started by yusBug in C:\Users\yusBug\IdeaProjects\ContactMessageManagement)
+""2025-02-13 00:07:45,870 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:No active profile set, falling back to 1 default profile: "default"
+""2025-02-13 00:07:46,571 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2025-02-13 00:07:46,587 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+""2025-02-13 00:07:47,244 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8099 (http)
+""2025-02-13 00:07:47,255 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2025-02-13 00:07:47,256 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2025-02-13 00:07:47,361 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2025-02-13 00:07:47,362 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 1448 ms
+""2025-02-13 00:07:47,539 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2025-02-13 00:07:47,601 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2025-02-13 00:07:47,772 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2025-02-13 00:07:47,885 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2025-02-13 00:07:48,074 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2025-02-13 00:07:48,101 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2025-02-13 00:07:48,669 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2025-02-13 00:07:48,677 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2025-02-13 00:07:49,129 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8099 (http) with context path ''
+""2025-02-13 00:07:49,144 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Started ContactMessageManagementApplication in 3.705 seconds (JVM running for 4.056)
+""2025-02-13 00:11:24,840 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2025-02-13 00:11:24,842 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2025-02-13 00:11:24,845 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
+""2025-02-13 00:11:29,805 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Starting ContactMessageManagementApplication using Java 17.0.14 on yBug-PC with PID 19692 (C:\Users\yusBug\IdeaProjects\ContactMessageManagement\target\classes started by yusBug in C:\Users\yusBug\IdeaProjects\ContactMessageManagement)
+""2025-02-13 00:11:29,809 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:No active profile set, falling back to 1 default profile: "default"
+""2025-02-13 00:11:30,491 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+""2025-02-13 00:11:30,508 INFO  [main] org.springframework.data.repository.config.RepositoryConfigurationDelegate:Finished Spring Data repository scanning in 6 ms. Found 0 JPA repository interfaces.
+""2025-02-13 00:11:31,155 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat initialized with port(s): 8099 (http)
+""2025-02-13 00:11:31,165 INFO  [main] org.apache.catalina.core.StandardService:Starting service [Tomcat]
+""2025-02-13 00:11:31,166 INFO  [main] org.apache.catalina.core.StandardEngine:Starting Servlet engine: [Apache Tomcat/9.0.68]
+""2025-02-13 00:11:31,268 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]:Initializing Spring embedded WebApplicationContext
+""2025-02-13 00:11:31,269 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext:Root WebApplicationContext: initialization completed in 1415 ms
+""2025-02-13 00:11:31,434 INFO  [main] org.hibernate.jpa.internal.util.LogHelper:HHH000204: Processing PersistenceUnitInfo [name: default]
+""2025-02-13 00:11:31,494 INFO  [main] org.hibernate.Version:HHH000412: Hibernate ORM core version 5.6.12.Final
+""2025-02-13 00:11:31,664 INFO  [main] org.hibernate.annotations.common.Version:HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+""2025-02-13 00:11:31,773 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Starting...
+""2025-02-13 00:11:31,960 INFO  [main] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Start completed.
+""2025-02-13 00:11:31,990 INFO  [main] org.hibernate.dialect.Dialect:HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL81Dialect
+""2025-02-13 00:11:32,559 INFO  [main] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator:HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+""2025-02-13 00:11:32,565 INFO  [main] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Initialized JPA EntityManagerFactory for persistence unit 'default'
+""2025-02-13 00:11:33,016 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer:Tomcat started on port(s): 8099 (http) with context path ''
+""2025-02-13 00:11:33,029 INFO  [main] com.tay.ContactMessageManagement.ContactMessageManagementApplication:Started ContactMessageManagementApplication in 3.661 seconds (JVM running for 4.028)
+""2025-02-13 00:11:37,350 INFO  [SpringApplicationShutdownHook] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean:Closing JPA EntityManagerFactory for persistence unit 'default'
+""2025-02-13 00:11:37,352 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown initiated...
+""2025-02-13 00:11:37,354 INFO  [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource:HikariPool-1 - Shutdown completed.
 "
