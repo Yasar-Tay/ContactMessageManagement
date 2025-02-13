@@ -5,7 +5,10 @@ import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
 import com.tay.ContactMessageManagement.entity.business.ContactMessage;
 import com.tay.ContactMessageManagement.mapper.business.ContactMessageMapper;
 import com.tay.ContactMessageManagement.repository.business.ContactMessageRepository;
+import com.tay.ContactMessageManagement.service.helper.PageableHelper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -18,6 +21,7 @@ public class ContactMessageService {
 
     private final ContactMessageRepository contactMessageRepository;
     private final ContactMessageMapper contactMessageMapper;
+    private final PageableHelper pageableHelper;
 
     /**
      *
@@ -48,5 +52,14 @@ public class ContactMessageService {
                 .collect(Collectors.toList());
         //returning DTO list
         return ResponseEntity.ok(responseList);
+    }
+
+    public ResponseEntity<Page<ContactMessageResponse>> getByPage(int page, int size, String type, String prop) {
+        //creating pageable
+        Pageable pageable = pageableHelper.createPageable(page, size, type, prop);
+        //Fetch from DB
+        Page<ContactMessage> messagePage = contactMessageRepository.findAll(pageable);
+        //mapping entities into response DTO and returning them in a ResponseEntity
+        return ResponseEntity.ok(messagePage.map(contactMessageMapper::mapContactMessageToContactMessageResponse));
     }
 }
