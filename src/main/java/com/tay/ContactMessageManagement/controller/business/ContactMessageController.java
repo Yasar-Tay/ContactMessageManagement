@@ -56,4 +56,9 @@ public class ContactMessageController {
     ){
         return contactMessageService.getByPage(page, size, type, prop);
     }
+
+    @GetMapping("/getbyemail")
+    public ResponseEntity<List<ContactMessageResponse>> getMessagesByEmail(@RequestParam String email){
+        return contactMessageService.getByEmail(email);
+    }
 }

@@ -6,6 +6,7 @@ import com.tay.ContactMessageManagement.entity.business.ContactMessage;
 import com.tay.ContactMessageManagement.mapper.business.ContactMessageMapper;
 import com.tay.ContactMessageManagement.repository.business.ContactMessageRepository;
 import com.tay.ContactMessageManagement.service.helper.PageableHelper;
+import com.tay.ContactMessageManagement.service.validator.PropertyValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ public class ContactMessageService {
     private final ContactMessageRepository contactMessageRepository;
     private final ContactMessageMapper contactMessageMapper;
     private final PageableHelper pageableHelper;
+    private final PropertyValidator propertyValidator;
 
     /**
      *
@@ -54,6 +56,14 @@ public class ContactMessageService {
         return ResponseEntity.ok(responseList);
     }
 
+    /**
+     * Parameters sent by ContactMessageController::getMessagesByPage()
+     * @param page Index number of page
+     * @param size How many items should be fetched per page
+     * @param type Type of direction (ASC or DESC)
+     * @param prop Which property will be used for sorting.
+     * @return ResponseEntity object within a Page object consist of ContactMessageResponse DTOs.
+     */
     public ResponseEntity<Page<ContactMessageResponse>> getByPage(int page, int size, String type, String prop) {
         //creating pageable
         Pageable pageable = pageableHelper.createPageable(page, size, type, prop);
@@ -61,5 +71,18 @@ public class ContactMessageService {
         Page<ContactMessage> messagePage = contactMessageRepository.findAll(pageable);
         //mapping entities into response DTO and returning them in a ResponseEntity
         return ResponseEntity.ok(messagePage.map(contactMessageMapper::mapContactMessageToContactMessageResponse));
+    }
+
+    public ResponseEntity<List<ContactMessageResponse>> getByEmail(String email) {
+        //validation
+        propertyValidator.existsByEmail(email);
+        //Fetch from DB
+        List<ContactMessage> messagesByEmail = contactMessageRepository.findByEmail(email);
+        //Mapping into DTO and returning in a ResponseEntity object
+        return ResponseEntity.ok(
+                messagesByEmail.stream()
+                .map(contactMessageMapper::mapContactMessageToContactMessageResponse)
+                .collect(Collectors.toList()));
+
     }
 }
