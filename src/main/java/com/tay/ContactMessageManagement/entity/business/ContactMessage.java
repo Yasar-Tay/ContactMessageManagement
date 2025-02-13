@@ -1,4 +1,4 @@
-package com.tay.ContactMessageManagement.entity;
+package com.tay.ContactMessageManagement.entity.business;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
