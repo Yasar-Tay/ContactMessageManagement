@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,11 +35,18 @@ public class ContactMessageService {
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    //TODO Delete later. Added for test purposes
+    /**
+     * Fetches all messages from DB
+     * @return  ResponseEntity within ContactMessageResponse DTOs as List
+     */
     public ResponseEntity<List<ContactMessageResponse>> getAll() {
-        List<ContactMessageResponse> responseList = contactMessageRepository.findAll().stream()
+        //Fetching messages from DB
+        List<ContactMessage> messages = contactMessageRepository.findAll();
+        //Mapping into Response DTO
+        List<ContactMessageResponse> responseList = messages.stream()
                 .map(contactMessageMapper::mapContactMessageToContactMessageResponse)
                 .collect(Collectors.toList());
+        //returning DTO list
         return ResponseEntity.ok(responseList);
     }
 }

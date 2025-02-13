@@ -17,14 +17,22 @@ public class ContactMessageController {
 
     private final ContactMessageService contactMessageService;
 
-    @PostMapping
+    /**
+     *
+     * @param contactMessageRequest ContactMessageRequest DTO from Postman or FE
+     * @return  ResponseEntity object within a ContactMessageResponse DTO mapped from saved Entity.
+     */
+    @PostMapping("/save")
     public ResponseEntity<ContactMessageResponse> saveContactMessage(
             @RequestBody @Valid ContactMessageRequest contactMessageRequest){
         return contactMessageService.saveMessage(contactMessageRequest);
     }
 
-    //TODO Delete later. Added for test purposes
-    @GetMapping
+    /**
+     *
+     * @return ResponseEntity object within a ContactMessageResponse DTO List.
+     */
+    @GetMapping("/getall")
     public ResponseEntity<List<ContactMessageResponse>> getAllMessages(){
         return contactMessageService.getAll();
     }
