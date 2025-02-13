@@ -28,7 +28,7 @@ public class ContactMessageService {
     /**
      *
      * @param contactMessageRequest DTO from postman or FE
-     * @return ResponseEntity within ContactMessageResponse DTO
+     * @return ContactMessageResponse DTO within ResponseEntity
      */
     public ResponseEntity<ContactMessageResponse> saveMessage(ContactMessageRequest contactMessageRequest) {
         //mapping request to entity
@@ -43,7 +43,7 @@ public class ContactMessageService {
 
     /**
      * Fetches all messages from DB
-     * @return  ResponseEntity within ContactMessageResponse DTOs as List
+     * @return ContactMessageResponse DTOs as List within ResponseEntity
      */
     public ResponseEntity<List<ContactMessageResponse>> getAll() {
         //Fetching messages from DB
@@ -62,7 +62,7 @@ public class ContactMessageService {
      * @param size How many items should be fetched per page
      * @param type Type of direction (ASC or DESC)
      * @param prop Which property will be used for sorting.
-     * @return ResponseEntity object within a Page object consist of ContactMessageResponse DTOs.
+     * @return Page object consist of ContactMessageResponse DTOs within ResponseEntity object.
      */
     public ResponseEntity<Page<ContactMessageResponse>> getByPage(int page, int size, String type, String prop) {
         //creating pageable
@@ -73,6 +73,11 @@ public class ContactMessageService {
         return ResponseEntity.ok(messagePage.map(contactMessageMapper::mapContactMessageToContactMessageResponse));
     }
 
+    /**
+     * This method fetches messages belonged to the given email address.
+     * @param email Email String sent by ContactMessageController::getMessagesByEmail()
+     * @return ContactMessageResponse DTOS within a ResponseEntity object.
+     */
     public ResponseEntity<List<ContactMessageResponse>> getByEmail(String email) {
         //validation
         propertyValidator.existsByEmail(email);

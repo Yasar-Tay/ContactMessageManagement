@@ -20,7 +20,7 @@ public class ContactMessageController {
     /**
      *
      * @param contactMessageRequest ContactMessageRequest DTO from Postman or FE
-     * @return  ResponseEntity object within a ContactMessageResponse DTO mapped from saved Entity.
+     * @return  a ContactMessageResponse DTO mapped from saved Entity within ResponseEntity object.
      */
     @PostMapping("/save")
     public ResponseEntity<ContactMessageResponse> saveContactMessage(
@@ -30,7 +30,7 @@ public class ContactMessageController {
 
     /**
      *
-     * @return ResponseEntity object within a ContactMessageResponse DTO List.
+     * @return a ContactMessageResponse DTO List object within ResponseEntity.
      */
     //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/getall")
@@ -39,12 +39,12 @@ public class ContactMessageController {
     }
 
     /**
-     * Parameters sent by Postman or FE
+     * This method fetches all messages by page
      * @param page Index number of page
      * @param size How many items should be fetched per page
      * @param type Type of direction (ASC or DESC)
      * @param prop Which property will be used for sorting.
-     * @return ResponseEntity object within a Page object consist of ContactMessageResponse DTOs.
+     * @return a Page object consist of Response DTOs within a ResponseEntity object.
      */
     //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/getbypage")
@@ -57,6 +57,11 @@ public class ContactMessageController {
         return contactMessageService.getByPage(page, size, type, prop);
     }
 
+    /**
+     * This method fetches messages belonged to the given email address.
+     * @param email Email String sent by Postman or FE
+     * @return ContactMessageResponse DTOS within a ResponseEntity object.
+     */
     @GetMapping("/getbyemail")
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByEmail(@RequestParam String email){
         return contactMessageService.getByEmail(email);

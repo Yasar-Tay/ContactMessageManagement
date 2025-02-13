@@ -13,6 +13,10 @@ public class PropertyValidator {
 
     private final ContactMessageRepository contactMessageRepository;
 
+    /**
+     * Checks if given email exists in DB. If not, throws ResourceNotFoundException
+     * @param email Email String to be checked
+     */
     public void existsByEmail(String email){
         if (!contactMessageRepository.existsByEmail(email)){
             throw new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_EMAIL, email));
