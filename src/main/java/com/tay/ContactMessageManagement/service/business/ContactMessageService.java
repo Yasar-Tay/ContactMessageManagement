@@ -1,8 +1,10 @@
 package com.tay.ContactMessageManagement.service.business;
 
+import com.tay.ContactMessageManagement.dto.messages.ErrorMessages;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
 import com.tay.ContactMessageManagement.entity.business.ContactMessage;
+import com.tay.ContactMessageManagement.exceptions.ResourceNotFoundException;
 import com.tay.ContactMessageManagement.mapper.business.ContactMessageMapper;
 import com.tay.ContactMessageManagement.repository.business.ContactMessageRepository;
 import com.tay.ContactMessageManagement.service.helper.PageableHelper;
@@ -74,6 +76,23 @@ public class ContactMessageService {
     }
 
     /**
+     * Fetches messages according to the subject param coming from Postman or FE
+     * @param searchParam String parameter sent by Controller method
+     * @return  ResponseEntitiy object within list of found messages
+     * throws ResourceNotFoundException if no message is found.
+     */
+    public ResponseEntity<List<ContactMessageResponse>> searchBySubject(String searchParam) {
+        List<ContactMessage> foundMessages = contactMessageRepository.findAllBySubjectLike(searchParam);
+        if (foundMessages.isEmpty()){
+            throw new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_SUBJECT, searchParam));
+        }
+        return ResponseEntity.ok(
+                foundMessages.stream()
+                        .map(contactMessageMapper::mapContactMessageToContactMessageResponse)
+                        .collect(Collectors.toList()));
+    }
+
+    /**
      * This method fetches messages belonged to the given email address.
      * @param email Email String sent by ContactMessageController::getMessagesByEmail()
      * @return ContactMessageResponse DTOS within a ResponseEntity object.
@@ -90,4 +109,6 @@ public class ContactMessageService {
                 .collect(Collectors.toList()));
 
     }
+
+
 }

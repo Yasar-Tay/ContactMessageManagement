@@ -58,10 +58,21 @@ public class ContactMessageController {
     }
 
     /**
+     * Fetches messages according to the subject param coming from Postman or FE
+     * @param searchParam String parameter
+     * @return  ResponseEntitiy object within list of found messages
+     */
+    @GetMapping("/searchbysubject")
+    public ResponseEntity<List<ContactMessageResponse>> searchMessagesBySubject(@RequestParam String searchParam){
+        return contactMessageService.searchBySubject(searchParam);
+    }
+
+    /**
      * This method fetches messages belonged to the given email address.
      * @param email Email String sent by Postman or FE
      * @return ContactMessageResponse DTOS within a ResponseEntity object.
      */
+    //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/getbyemail")
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByEmail(@RequestParam String email){
         return contactMessageService.getByEmail(email);
