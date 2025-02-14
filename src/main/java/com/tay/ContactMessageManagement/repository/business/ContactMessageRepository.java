@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -18,4 +19,7 @@ public interface ContactMessageRepository extends JpaRepository<ContactMessage, 
 
     @Query("FROM ContactMessage cm WHERE cm.subject LIKE %:searchParam%")
     List<ContactMessage> findAllBySubjectLike(String searchParam);
+
+    @Query("FROM ContactMessage WHERE creationDateTime BETWEEN :beginDate AND :finalDate")
+    List<ContactMessage> findAllBetweenDates(LocalDateTime beginDate, LocalDateTime finalDate);
 }

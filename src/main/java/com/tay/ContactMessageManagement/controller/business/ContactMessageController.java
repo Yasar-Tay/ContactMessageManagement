@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -62,6 +63,7 @@ public class ContactMessageController {
      * @param searchParam String parameter
      * @return  ResponseEntitiy object within list of found messages
      */
+    //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/searchbysubject")
     public ResponseEntity<List<ContactMessageResponse>> searchMessagesBySubject(@RequestParam String searchParam){
         return contactMessageService.searchBySubject(searchParam);
@@ -76,5 +78,17 @@ public class ContactMessageController {
     @GetMapping("/getbyemail")
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByEmail(@RequestParam String email){
         return contactMessageService.getByEmail(email);
+    }
+
+    /**
+     * This method fetches the messages between two dates given as parameter.
+     * @param startDate startDate in String type
+     * @param endDate   endDate in String type
+     * @return  ResponseEntity within a list of found messages
+     */
+    //TODO - Only Admin should be able to reach this endpoint
+    @GetMapping("/getbydates")
+    public ResponseEntity<List<ContactMessageResponse>> getMessagesByDate(@RequestParam String startDate, @RequestParam String endDate){
+        return contactMessageService.getByDate(startDate, endDate);
     }
 }
