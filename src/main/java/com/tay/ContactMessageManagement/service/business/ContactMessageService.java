@@ -168,4 +168,20 @@ public class ContactMessageService {
                         .map(contactMessageMapper::mapContactMessageToContactMessageResponse)
                         .collect(Collectors.toList()));
     }
+
+    /**
+     *
+     * @param id id of the message to be deleted
+     * @return ResponseEntity within a success message in String
+     */
+    public ResponseEntity<String> deleteById(Long id) {
+        //Validate if entity with given id exists
+        if(!contactMessageRepository.existsById(id)){
+            throw new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_ID, id));
+        }
+        //Deletion
+        contactMessageRepository.deleteById(id);
+
+        return ResponseEntity.ok(String.format("Message with ID: %s deleted successfully.", id));
+    }
 }

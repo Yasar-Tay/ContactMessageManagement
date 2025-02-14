@@ -104,4 +104,26 @@ public class ContactMessageController {
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByTime(@RequestParam String startTime, @RequestParam String endTime){
         return contactMessageService.getByTime(startTime, endTime);
     }
+
+    /**
+     *
+     * @param id id of the message to be deleted
+     * @return ResponseEntity within a success message in String
+     */
+    @DeleteMapping("/del/{id}")
+    public ResponseEntity<String> deleteMessageById(@PathVariable Long id){
+        return contactMessageService.deleteById(id);
+    }
+
+    /**
+     *
+     * @param id id of the message to be deleted
+     * @return ResponseEntity within a success message in String
+     */
+    @DeleteMapping("/del")
+    public ResponseEntity<String> deleteMessageByIdParam(@RequestParam Long id){
+        return contactMessageService.deleteById(id);
+    }
+
+
 }
