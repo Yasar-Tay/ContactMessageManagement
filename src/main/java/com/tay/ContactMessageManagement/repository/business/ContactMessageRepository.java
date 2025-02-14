@@ -22,10 +22,10 @@ public interface ContactMessageRepository extends JpaRepository<ContactMessage, 
     List<ContactMessage> findAllBetweenDates(LocalDateTime startDateTime, LocalDateTime endDateTime);
 
     @Query(value = "SELECT * FROM t_contact_message " +
-           "WHERE TO_TIMESTAMP(TO_CHAR(creation_date_time, 'HH:MI'), 'HH:MI') " +
-           "BETWEEN TO_TIMESTAMP(:startTime, 'HH:MI') " +
+           "WHERE TO_TIMESTAMP(TO_CHAR(creation_date_time, 'HH:MI'), 'HH24:MI') " +
+           "BETWEEN TO_TIMESTAMP(:startTime, 'HH24:MI') " +
            "AND " +
-           "TO_TIMESTAMP(:endTime, 'HH:MI')", nativeQuery = true)
+           "TO_TIMESTAMP(:endTime, 'HH24:MI')", nativeQuery = true)
     List<ContactMessage> findAllBetweenTimes(String startTime, String endTime);
 
 }
