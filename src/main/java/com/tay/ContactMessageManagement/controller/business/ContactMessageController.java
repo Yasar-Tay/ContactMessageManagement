@@ -87,8 +87,22 @@ public class ContactMessageController {
      * @return  ResponseEntity within a list of found messages
      */
     //TODO - Only Admin should be able to reach this endpoint
+    //TODO - DateTimeParseException must be handled too.
     @GetMapping("/getbydates")
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByDate(@RequestParam String startDate, @RequestParam String endDate){
         return contactMessageService.getByDate(startDate, endDate);
+    }
+
+    /**
+     * This method fetches the messages between two times given as parameter.
+     * @param startTime startTime in String
+     * @param endTime endTime in String
+     * @return ResponseEntity within a list of found messages
+     */
+    //TODO - Only Admin should be able to reach this endpoint
+    //TODO - DateTimeParseException must be handled too.
+    @GetMapping("/getbytimes")
+    public ResponseEntity<List<ContactMessageResponse>> getMessagesByTime(@RequestParam String startTime, @RequestParam String endTime){
+        return contactMessageService.getByTime(startTime, endTime);
     }
 }

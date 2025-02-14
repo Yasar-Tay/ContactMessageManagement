@@ -18,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.swing.text.DateFormatter;
+import java.nio.file.attribute.UserDefinedFileAttributeView;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -141,6 +142,29 @@ public class ContactMessageService {
         //checking if it is empty
         if (foundMessages.isEmpty())
             throw new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_DATE, startDate, endDate));
+
+        return ResponseEntity.ok(
+                foundMessages.stream()
+                        .map(contactMessageMapper::mapContactMessageToContactMessageResponse)
+                        .collect(Collectors.toList()));
+    }
+
+    /**
+     * This method fetches the messages between two times given as parameter.
+     * @param startTime startTime in String
+     * @param endTime endTime in String
+     * @return ResponseEntity within a list of found messages
+     */
+    public ResponseEntity<List<ContactMessageResponse>> getByTime(String startTime, String endTime) {
+        //parsing String times into LocalTime. This is just for validation.
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime firstTime = LocalTime.parse(startTime, formatter);
+        LocalTime secondTime = LocalTime.parse(endTime, formatter);
+        //DB fetch
+        List<ContactMessage> foundMessages = contactMessageRepository.findAllBetweenTimes(firstTime.toString(), secondTime.toString());
+        //checking if it is empty
+        if (foundMessages.isEmpty())
+            throw new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_TIME, startTime, endTime));
 
         return ResponseEntity.ok(
                 foundMessages.stream()
