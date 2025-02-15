@@ -31,7 +31,7 @@ public class ContactMessage {
     private LocalDateTime creationDateTime;
 
     @PrePersist
-    public void assignLocalDateTime(){
+    public void assignCreationDateTime(){
         creationDateTime = LocalDateTime.now();
     }
 }
