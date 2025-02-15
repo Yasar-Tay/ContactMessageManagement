@@ -1,7 +1,7 @@
-package com.tay.ContactMessageManagement.repository.business;
+package com.tay.ContactMessageManagement.repository;
 
 
-import com.tay.ContactMessageManagement.entity.business.ContactMessage;
+import com.tay.ContactMessageManagement.entity.ContactMessage;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

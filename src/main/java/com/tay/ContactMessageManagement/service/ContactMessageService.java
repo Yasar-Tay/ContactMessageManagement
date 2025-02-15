@@ -1,14 +1,14 @@
-package com.tay.ContactMessageManagement.service.business;
+package com.tay.ContactMessageManagement.service;
 
 import com.tay.ContactMessageManagement.dto.messages.ErrorMessages;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
-import com.tay.ContactMessageManagement.entity.business.ContactMessage;
+import com.tay.ContactMessageManagement.entity.ContactMessage;
 import com.tay.ContactMessageManagement.exceptions.ConflictException;
 import com.tay.ContactMessageManagement.exceptions.ResourceNotFoundException;
-import com.tay.ContactMessageManagement.mapper.business.ContactMessageMapper;
-import com.tay.ContactMessageManagement.repository.business.ContactMessageRepository;
+import com.tay.ContactMessageManagement.mapper.ContactMessageMapper;
+import com.tay.ContactMessageManagement.repository.ContactMessageRepository;
 import com.tay.ContactMessageManagement.service.helper.PageableHelper;
 import com.tay.ContactMessageManagement.service.validator.PropertyValidator;
 import lombok.RequiredArgsConstructor;

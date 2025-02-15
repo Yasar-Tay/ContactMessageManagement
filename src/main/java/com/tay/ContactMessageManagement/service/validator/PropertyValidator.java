@@ -3,7 +3,7 @@ package com.tay.ContactMessageManagement.service.validator;
 
 import com.tay.ContactMessageManagement.dto.messages.ErrorMessages;
 import com.tay.ContactMessageManagement.exceptions.ResourceNotFoundException;
-import com.tay.ContactMessageManagement.repository.business.ContactMessageRepository;
+import com.tay.ContactMessageManagement.repository.ContactMessageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

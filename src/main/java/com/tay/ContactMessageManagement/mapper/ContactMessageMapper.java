@@ -1,12 +1,10 @@
-package com.tay.ContactMessageManagement.mapper.business;
+package com.tay.ContactMessageManagement.mapper;
 
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
-import com.tay.ContactMessageManagement.entity.business.ContactMessage;
+import com.tay.ContactMessageManagement.entity.ContactMessage;
 import org.springframework.stereotype.Component;
-
-import java.util.Objects;
 
 @Component
 public class ContactMessageMapper {

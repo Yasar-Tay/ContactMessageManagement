@@ -1,9 +1,9 @@
-package com.tay.ContactMessageManagement.controller.business;
+package com.tay.ContactMessageManagement.controller;
 
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
-import com.tay.ContactMessageManagement.service.business.ContactMessageService;
+import com.tay.ContactMessageManagement.service.ContactMessageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,6 @@ public class ContactMessageController {
     private final ContactMessageService contactMessageService;
 
     /**
-     *
      * @param contactMessageRequest ContactMessageRequest DTO from Postman or FE
      * @return  a ContactMessageResponse DTO mapped from saved Entity within ResponseEntity object.
      */
@@ -30,10 +29,8 @@ public class ContactMessageController {
     }
 
     /**
-     *
      * @return a ContactMessageResponse DTO List object within ResponseEntity.
      */
-    //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/getall")
     public ResponseEntity<List<ContactMessageResponse>> getAllMessages(){
         return contactMessageService.getAll();
@@ -47,7 +44,6 @@ public class ContactMessageController {
      * @param prop Which property will be used for sorting.
      * @return a Page object consist of Response DTOs within a ResponseEntity object.
      */
-    //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/getbypage")
     public ResponseEntity<Page<ContactMessageResponse>> getMessagesByPage(
             @RequestParam(defaultValue = "0") int page,
@@ -63,7 +59,6 @@ public class ContactMessageController {
      * @param searchParam String parameter
      * @return  ResponseEntitiy object within list of found messages
      */
-    //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/searchbysubject")
     public ResponseEntity<List<ContactMessageResponse>> searchMessagesBySubject(@RequestParam String searchParam){
         return contactMessageService.searchBySubject(searchParam);
@@ -74,7 +69,6 @@ public class ContactMessageController {
      * @param email Email String sent by Postman or FE
      * @return ContactMessageResponse DTOS within a ResponseEntity object.
      */
-    //TODO - Only Admin should be able to reach this endpoint
     @GetMapping("/getbyemail")
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByEmail(@RequestParam String email){
         return contactMessageService.getByEmail(email);
@@ -86,7 +80,6 @@ public class ContactMessageController {
      * @param endDate   endDate in String type
      * @return  ResponseEntity within a list of found messages
      */
-    //TODO - Only Admin should be able to reach this endpoint
     //TODO - DateTimeParseException must be handled too.
     @GetMapping("/getbydates")
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByDate(@RequestParam String startDate, @RequestParam String endDate){
@@ -99,7 +92,6 @@ public class ContactMessageController {
      * @param endTime endTime in String
      * @return ResponseEntity within a list of found messages
      */
-    //TODO - Only Admin should be able to reach this endpoint
     //TODO - DateTimeParseException must be handled too.
     @GetMapping("/getbytimes")
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByTime(@RequestParam String startTime, @RequestParam String endTime){
@@ -107,7 +99,6 @@ public class ContactMessageController {
     }
 
     /**
-     *
      * @param id id of the message to be deleted
      * @return ResponseEntity within a success message in String
      */
@@ -117,7 +108,6 @@ public class ContactMessageController {
     }
 
     /**
-     *
      * @param id id of the message to be deleted
      * @return ResponseEntity within a success message in String
      */
