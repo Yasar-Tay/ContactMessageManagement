@@ -1,6 +1,7 @@
 package com.tay.ContactMessageManagement.controller.business;
 
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
+import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
 import com.tay.ContactMessageManagement.service.business.ContactMessageService;
 import lombok.RequiredArgsConstructor;
@@ -123,6 +124,19 @@ public class ContactMessageController {
     @DeleteMapping("/del")
     public ResponseEntity<String> deleteMessageByIdParam(@RequestParam Long id){
         return contactMessageService.deleteById(id);
+    }
+
+    /**
+     * This method updates the message with given id and request body
+     * @param id Id value of message to be updated
+     * @param contactMessageUpdateRequest request body for update
+     * @return ResponseEntity within the updated message.
+     */
+    @PutMapping("/update/{id}")
+    public ResponseEntity<ContactMessageResponse> updateMessageById(
+            @PathVariable Long id,
+            @RequestBody @Valid ContactMessageUpdateRequest contactMessageUpdateRequest){
+        return contactMessageService.updateMessage(id, contactMessageUpdateRequest);
     }
 
 

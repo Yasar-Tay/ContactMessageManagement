@@ -30,7 +30,7 @@ public class ContactMessageRequest {
     private String subject;
 
     @NotNull(message = "Please enter your message")
-    @NotNull(message = "Please enter your message")
+    @NotBlank(message = "Please enter your message")
     @NotEmpty(message = "Please enter your message")
     @Size(max = 180, message = "Your message should be consist of 180 characters max.")
     private String message;

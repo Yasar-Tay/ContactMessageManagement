@@ -1,9 +1,12 @@
 package com.tay.ContactMessageManagement.mapper.business;
 
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
+import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
 import com.tay.ContactMessageManagement.entity.business.ContactMessage;
 import org.springframework.stereotype.Component;
+
+import java.util.Objects;
 
 @Component
 public class ContactMessageMapper {
@@ -27,4 +30,21 @@ public class ContactMessageMapper {
                 .creationDateTime(contactMessage.getCreationDateTime())
                 .build();
     }
+
+    public ContactMessage updateContactMessageWithContactMessageRequest(ContactMessageUpdateRequest contactMessageUpdateRequest, ContactMessage contactMessage){
+        if (contactMessageUpdateRequest.getName() != null){
+            contactMessage.setName(contactMessageUpdateRequest.getName());
+        }
+        if (contactMessageUpdateRequest.getEmail() != null){
+            contactMessage.setEmail(contactMessageUpdateRequest.getEmail());
+        }
+        if (contactMessageUpdateRequest.getSubject() != null){
+            contactMessage.setSubject(contactMessageUpdateRequest.getSubject());
+        }
+        if (contactMessageUpdateRequest.getMessage() != null){
+            contactMessage.setMessage(contactMessageUpdateRequest.getMessage());
+        }
+        return contactMessage;
+    }
+
 }

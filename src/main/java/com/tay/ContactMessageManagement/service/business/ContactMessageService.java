@@ -2,6 +2,7 @@ package com.tay.ContactMessageManagement.service.business;
 
 import com.tay.ContactMessageManagement.dto.messages.ErrorMessages;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
+import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
 import com.tay.ContactMessageManagement.entity.business.ContactMessage;
 import com.tay.ContactMessageManagement.exceptions.ConflictException;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -169,6 +171,11 @@ public class ContactMessageService {
                         .collect(Collectors.toList()));
     }
 
+    private ContactMessage findMessageById(Long id){
+        return contactMessageRepository.findById(id)
+                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_ID, id)));
+    }
+
     /**
      *
      * @param id id of the message to be deleted
@@ -176,12 +183,25 @@ public class ContactMessageService {
      */
     public ResponseEntity<String> deleteById(Long id) {
         //Validate if entity with given id exists
-        if(!contactMessageRepository.existsById(id)){
-            throw new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_ID, id));
-        }
+        ContactMessage messageToDelete = findMessageById(id);
         //Deletion
-        contactMessageRepository.deleteById(id);
-
+        contactMessageRepository.delete(messageToDelete);
         return ResponseEntity.ok(String.format("Message with ID: %s deleted successfully.", id));
+    }
+
+    /**
+     * This method updates the message with given id and request body
+     * @param id Id value of message to be updated
+     * @param contactMessageUpdateRequest request dto for update
+     * @return ResponseEntity within the updated message.
+     */
+    public ResponseEntity<ContactMessageResponse> updateMessage(Long id, @Valid ContactMessageUpdateRequest contactMessageUpdateRequest) {
+        //Find the entity to be updated
+        ContactMessage contactMessage = findMessageById(id);
+        //Update the entity object
+        ContactMessage updatedMessageObject = contactMessageMapper.updateContactMessageWithContactMessageRequest(contactMessageUpdateRequest, contactMessage);
+        //Update in the DB
+        ContactMessage updatedMessageEntity = contactMessageRepository.save(updatedMessageObject);
+        return ResponseEntity.ok(contactMessageMapper.mapContactMessageToContactMessageResponse(updatedMessageEntity));
     }
 }
