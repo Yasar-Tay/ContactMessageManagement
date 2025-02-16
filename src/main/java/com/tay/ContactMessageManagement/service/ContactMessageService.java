@@ -5,6 +5,7 @@ import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
 import com.tay.ContactMessageManagement.entity.ContactMessage;
+import com.tay.ContactMessageManagement.exceptions.BadRequestException;
 import com.tay.ContactMessageManagement.exceptions.ConflictException;
 import com.tay.ContactMessageManagement.exceptions.ResourceNotFoundException;
 import com.tay.ContactMessageManagement.mapper.ContactMessageMapper;
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -124,14 +126,22 @@ public class ContactMessageService {
 
     /**
      * This method fetches the messages between two dates given as parameter.
+     *
      * @param startDate startDate in String type
      * @param endDate   endDate in String type
-     * @return  ResponseEntity within a list of found messages
+     * @return ResponseEntity within a list of found messages
      */
     public ResponseEntity<List<ContactMessageResponse>> getByDate(String startDate, String endDate) {
         //parsing String dates into LocalDateTime
-        LocalDateTime startDateTime = LocalDate.parse(startDate).atTime(LocalTime.MIDNIGHT);
-        LocalDateTime endDateTime = LocalDate.parse(endDate).atTime(LocalTime.MAX);
+        LocalDateTime startDateTime;
+        LocalDateTime endDateTime;
+        try {
+            startDateTime = LocalDate.parse(startDate).atTime(LocalTime.MIDNIGHT);
+            endDateTime = LocalDate.parse(endDate).atTime(LocalTime.MAX);
+        } catch (DateTimeParseException e){
+            throw new BadRequestException(ErrorMessages.BAD_REQUEST_DATE);
+        }
+
         //checking if the endDate is after startDate
         if (startDateTime.isAfter(endDateTime)) {
             throw new ConflictException("Start Date can not be after end date.");
@@ -150,15 +160,23 @@ public class ContactMessageService {
 
     /**
      * This method fetches the messages between two times given as parameter.
+     *
      * @param startTime startTime in String
-     * @param endTime endTime in String
+     * @param endTime   endTime in String
      * @return ResponseEntity within a list of found messages
      */
     public ResponseEntity<List<ContactMessageResponse>> getByTime(String startTime, String endTime) {
         //parsing String times into LocalTime. This is just for validation.
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime firstTime = LocalTime.parse(startTime, formatter);
-        LocalTime secondTime = LocalTime.parse(endTime, formatter);
+        LocalTime firstTime;
+        LocalTime secondTime;
+        try {
+            firstTime = LocalTime.parse(startTime, formatter);
+            secondTime = LocalTime.parse(endTime, formatter);
+        } catch (DateTimeParseException e){
+            throw new BadRequestException(ErrorMessages.BAD_REQUEST_TIME);
+        }
+
         //DB fetch
         List<ContactMessage> foundMessages = contactMessageRepository.findAllBetweenTimes(firstTime.toString(), secondTime.toString());
         //checking if it is empty
@@ -171,13 +189,12 @@ public class ContactMessageService {
                         .collect(Collectors.toList()));
     }
 
-    private ContactMessage findMessageById(Long id){
+    private ContactMessage findMessageById(Long id) {
         return contactMessageRepository.findById(id)
-                .orElseThrow(()->new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_ID, id)));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format(ErrorMessages.NOT_FOUND_BY_ID, id)));
     }
 
     /**
-     *
      * @param id id of the message to be deleted
      * @return ResponseEntity within a success message in String
      */
@@ -191,7 +208,8 @@ public class ContactMessageService {
 
     /**
      * This method updates the message with given id and request body
-     * @param id Id value of message to be updated
+     *
+     * @param id                          Id value of message to be updated
      * @param contactMessageUpdateRequest request dto for update
      * @return ResponseEntity within the updated message.
      */

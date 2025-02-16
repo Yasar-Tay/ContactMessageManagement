@@ -1,6 +1,6 @@
 package com.tay.ContactMessageManagement.controller;
 
-import com.tay.ContactMessageManagement.dto.messages.ErrorMessages;
+
 import com.tay.ContactMessageManagement.dto.request.ContactMessageRequest;
 import com.tay.ContactMessageManagement.dto.request.ContactMessageUpdateRequest;
 import com.tay.ContactMessageManagement.dto.response.ContactMessageResponse;
@@ -9,9 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.WebRequest;
 import javax.validation.Valid;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @RestController
@@ -100,28 +98,6 @@ public class ContactMessageController {
     public ResponseEntity<List<ContactMessageResponse>> getMessagesByTime(@RequestParam String startTime, @RequestParam String endTime){
         return contactMessageService.getByTime(startTime, endTime);
     }
-
-    /**
-     * This method converts a DateTimeParseException into a ResponseEntity we have prepared.
-     * @param ex DateTimeParseException object thrown in case of bad parameter.
-     * @param request WebRequest object for getting parameterName
-     * @return ResponseEntity as the replacement of DateTimeParseException
-     */
-    @ExceptionHandler(DateTimeParseException.class)
-    public final ResponseEntity<String> handleDateTimeParseException(DateTimeParseException ex, WebRequest request) {
-
-        while (request.getParameterNames().hasNext()){
-            String parameterName = request.getParameterNames().next();
-
-            if (parameterName.equals("startDate") || parameterName.equals("endDate"))
-                return ResponseEntity.badRequest().body(ErrorMessages.BAD_REQUEST_DATE);
-
-            if (parameterName.equals("startTime") || parameterName.equals("endTime"))
-                return ResponseEntity.badRequest().body(ErrorMessages.BAD_REQUEST_TIME);
-        }
-        return ResponseEntity.badRequest().body(ex.getMessage());
-    }
-
 
     /**
      * @param id id of the message to be deleted
