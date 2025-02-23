@@ -1,6 +1,7 @@
 package com.tay.ContactMessageManagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -18,17 +19,19 @@ public class ContactMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-
-    private String email;
-
     private String subject;
 
     private String message;
 
+    private String email;
+
     @Column(name = "creation_date_time")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd hh:mm", timezone = "US")
     private LocalDateTime creationDateTime;
+
+    @ManyToOne
+    @JsonIgnore
+    private User user;
 
     @PrePersist
     public void assignCreationDateTime(){

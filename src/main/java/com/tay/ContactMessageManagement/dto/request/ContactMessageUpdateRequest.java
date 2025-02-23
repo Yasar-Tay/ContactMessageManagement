@@ -1,5 +1,6 @@
 package com.tay.ContactMessageManagement.dto.request;
 
+import com.tay.ContactMessageManagement.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,12 +14,9 @@ import javax.validation.constraints.*;
 @Builder
 public class ContactMessageUpdateRequest {
 
-    private String name;
-
-    @Email(message = "Please provide a valid email")
-    private String email;
-
     private String subject;
 
     private String message;
+
+    private User user;
 }

@@ -11,31 +11,23 @@ public class ContactMessageMapper {
 
     public ContactMessage mapContactMessageRequestToContactMessage(ContactMessageRequest contactMessageRequest) {
         return ContactMessage.builder()
-                .name(contactMessageRequest.getName())
-                .email(contactMessageRequest.getEmail())
                 .subject(contactMessageRequest.getSubject())
                 .message(contactMessageRequest.getMessage())
+                .user(contactMessageRequest.getUser())
                 .build();
     }
 
     public ContactMessageResponse mapContactMessageToContactMessageResponse(ContactMessage contactMessage){
         return ContactMessageResponse.builder()
                 .id(contactMessage.getId())
-                .name(contactMessage.getName())
-                .email(contactMessage.getEmail())
                 .subject(contactMessage.getSubject())
                 .message(contactMessage.getMessage())
                 .creationDateTime(contactMessage.getCreationDateTime())
+                .user(contactMessage.getUser())
                 .build();
     }
 
     public ContactMessage updateContactMessageWithContactMessageRequest(ContactMessageUpdateRequest contactMessageUpdateRequest, ContactMessage contactMessage){
-        if (contactMessageUpdateRequest.getName() != null){
-            contactMessage.setName(contactMessageUpdateRequest.getName());
-        }
-        if (contactMessageUpdateRequest.getEmail() != null){
-            contactMessage.setEmail(contactMessageUpdateRequest.getEmail());
-        }
         if (contactMessageUpdateRequest.getSubject() != null){
             contactMessage.setSubject(contactMessageUpdateRequest.getSubject());
         }

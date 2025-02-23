@@ -45,6 +45,7 @@ public class ContactMessageService {
     public ResponseEntity<ContactMessageResponse> saveMessage(ContactMessageRequest contactMessageRequest) {
         //mapping request to entity
         ContactMessage messageToSave = contactMessageMapper.mapContactMessageRequestToContactMessage(contactMessageRequest);
+        messageToSave.setUser(contactMessageRequest.getUser());
         //save into DB
         ContactMessage savedMessage = contactMessageRepository.save(messageToSave);
         //mapping entity to response
@@ -113,7 +114,7 @@ public class ContactMessageService {
      */
     public ResponseEntity<List<ContactMessageResponse>> getByEmail(String email) {
         //validation
-        propertyValidator.existsByEmail(email);
+        propertyValidator.contactMessageExistsByEmail(email);
         //Fetch from DB
         List<ContactMessage> messagesByEmail = contactMessageRepository.findByEmail(email);
         //Mapping into DTO and returning in a ResponseEntity object
