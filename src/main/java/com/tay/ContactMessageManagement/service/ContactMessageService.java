@@ -45,7 +45,6 @@ public class ContactMessageService {
     public ResponseEntity<ContactMessageResponse> saveMessage(ContactMessageRequest contactMessageRequest) {
         //mapping request to entity
         ContactMessage messageToSave = contactMessageMapper.mapContactMessageRequestToContactMessage(contactMessageRequest);
-        messageToSave.setUser(contactMessageRequest.getUser());
         //save into DB
         ContactMessage savedMessage = contactMessageRepository.save(messageToSave);
         //mapping entity to response
@@ -222,5 +221,12 @@ public class ContactMessageService {
         //Update in the DB
         ContactMessage updatedMessageEntity = contactMessageRepository.save(updatedMessageObject);
         return ResponseEntity.ok(contactMessageMapper.mapContactMessageToContactMessageResponse(updatedMessageEntity));
+    }
+
+    public List<ContactMessageResponse> getByUserId(Long userId) {
+        List<ContactMessage> messages =  contactMessageRepository.findByUser_Id(userId);
+        return messages.stream()
+                .map(contactMessageMapper::mapContactMessageToContactMessageResponse)
+                .collect(Collectors.toList());
     }
 }

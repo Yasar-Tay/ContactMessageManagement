@@ -4,7 +4,6 @@ import com.tay.ContactMessageManagement.dto.request.UserRequest;
 import com.tay.ContactMessageManagement.dto.response.UserResponse;
 import com.tay.ContactMessageManagement.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,13 +22,10 @@ public class UserController {
         return userService.saveUser(userRequest);
     }
 
-    @GetMapping
-    public Page<UserResponse> getAllUsersByPage(@RequestParam(defaultValue = "0") int page,
-                                                @RequestParam(defaultValue = "10") int size,
-                                                @RequestParam(defaultValue = "DESC") String type,
-                                                @RequestParam(defaultValue = "0") String prop) {
-        return userService.getAllByPage(page, size, type, prop);
-    }
+   @GetMapping("/{userId}")
+   public ResponseEntity<UserResponse> getUserById(@PathVariable Long userId){
+        return userService.getById(userId);
+   }
 
     @DeleteMapping("/{userId}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long userId){

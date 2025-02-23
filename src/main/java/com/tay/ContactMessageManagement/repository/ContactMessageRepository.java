@@ -28,4 +28,5 @@ public interface ContactMessageRepository extends JpaRepository<ContactMessage, 
            "TO_TIMESTAMP(:endTime, 'HH24:MI')", nativeQuery = true)
     List<ContactMessage> findAllBetweenTimes(String startTime, String endTime);
 
+    List<ContactMessage> findByUser_Id(Long userId);
 }

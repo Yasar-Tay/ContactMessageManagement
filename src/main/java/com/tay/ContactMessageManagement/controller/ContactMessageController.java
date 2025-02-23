@@ -33,7 +33,7 @@ public class ContactMessageController {
      * @return a ContactMessageResponse DTO List object within ResponseEntity.
      */
     @GetMapping("/getall")
-    public ResponseEntity<List<ContactMessageResponse>> getAllMessages(){
+    public ResponseEntity<List<ContactMessageResponse>> getAllContactMessages(){
         return contactMessageService.getAll();
     }
 
@@ -128,6 +128,11 @@ public class ContactMessageController {
             @PathVariable Long id,
             @RequestBody @Valid ContactMessageUpdateRequest contactMessageUpdateRequest){
         return contactMessageService.updateMessage(id, contactMessageUpdateRequest);
+    }
+
+    @GetMapping("/getByUserId/{userId}")
+    public List<ContactMessageResponse> getMessagesByUserId(@PathVariable Long userId){
+        return contactMessageService.getByUserId(userId);
     }
 
 
